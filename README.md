@@ -1,2 +1,2 @@
 # Hear-Hero
-2023 정보통신종합설계
+Hear Hero: IOS App to detect dangerous sounds for people with hearing disablities.
