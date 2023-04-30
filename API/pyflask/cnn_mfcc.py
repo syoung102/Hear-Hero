@@ -60,7 +60,7 @@ def print_prediction(file_name):
     for i in range(len(predicted_proba)): 
         category = le.inverse_transform(np.array([i]))
         print(category[0], "\t\t : ", format(predicted_proba[i], '.32f'))
-        if (predicted_proba[i]) > 0.8:
+        if (predicted_proba[i]) > 0.82:
           find = 1
 
     if find == 1:
