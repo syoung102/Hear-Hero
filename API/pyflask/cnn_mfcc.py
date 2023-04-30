@@ -6,8 +6,12 @@ import os
 from pydub import AudioSegment
 
 max_pad_len = 1287
-model = load_model('pyflask\static\h5\mfcc_CNN.h5')
+model = load_model('pyflask\static\h5\final_CNN.h5')
+model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
+labels = [1, 2, 3, 4, 5, 6, 7]
+
 le = LabelEncoder()
+le.fit(labels) 
 
 def convert_to_wav(file_path):
     _, ext = os.path.splitext(file_path)
