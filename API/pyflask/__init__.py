@@ -68,6 +68,9 @@ def direction_post():
     if data['sound']['FIRE ALARM']:
         s_sound.append(7)
 
+    if direction.check_audio_type(record1_path)!=2 or direction.check_audio_type(record2_path)!=2:
+        return jsonify({"d_result": -2, "status": HTTPStatus.OK})
+
     predict_result1 = cnn_mfcc.main(record1_path, s_sound)
     predict_result2 = cnn_mfcc.main(record2_path, s_sound)
 
