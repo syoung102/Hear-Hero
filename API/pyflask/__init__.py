@@ -17,7 +17,23 @@ def mfcc_post():
     record_path = './static/recording/' + str(record.filename)
                                              
     s_sound_json = request.form.get("s_sound")
-    s_sound = json.loads(s_sound_json)
+    data = json.loads(s_sound_json)
+
+    s_sound = []
+    if data['sound']['KNOCKING']:
+        s_sound.append(1)
+    if data['sound']['BARKING']:
+        s_sound.append(2)
+    if data['sound']['CAR HORN']:
+        s_sound.append(3)
+    if data['sound']['SIREN']:
+        s_sound.append(4)
+    if data['sound']['RINGTONE']:
+        s_sound.append(5)
+    if data['sound']['SCREAMING']:
+        s_sound.append(6)
+    if data['sound']['FIRE ALARM']:
+        s_sound.append(7)
     
     predict_result = cnn_mfcc.main(record_path, s_sound)
 
@@ -34,7 +50,23 @@ def direction_post():
     record2_path = './static/recoding/' + str(record2.filename)
                                              
     s_sound_json = request.form.get("s_sound")
-    s_sound = json.loads(s_sound_json)
+    data = json.loads(s_sound_json)
+
+    s_sound = []
+    if data['sound']['KNOCKING']:
+        s_sound.append(1)
+    if data['sound']['BARKING']:
+        s_sound.append(2)
+    if data['sound']['CAR HORN']:
+        s_sound.append(3)
+    if data['sound']['SIREN']:
+        s_sound.append(4)
+    if data['sound']['RINGTONE']:
+        s_sound.append(5)
+    if data['sound']['SCREAMING']:
+        s_sound.append(6)
+    if data['sound']['FIRE ALARM']:
+        s_sound.append(7)
 
     predict_result1 = cnn_mfcc.main(record1_path, s_sound)
     predict_result2 = cnn_mfcc.main(record2_path, s_sound)
