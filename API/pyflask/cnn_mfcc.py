@@ -7,7 +7,7 @@ from pydub import AudioSegment
 
 max_pad_len = 1287
 model = load_model('pyflask\static\h5\final_CNN.h5')
-model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
+
 labels = [1, 2, 3, 4, 5, 6, 7]
 
 le = LabelEncoder()
