@@ -20,19 +20,19 @@ def mfcc_post():
     data = json.loads(s_sound_json)
 
     s_sound = []
-    if data['sound']['KNOCKING']:
+    if data['s_sound']['KNOCKING']:
         s_sound.append(1)
-    if data['sound']['BARKING']:
+    if data['s_sound']['BARKING']:
         s_sound.append(2)
-    if data['sound']['CAR HORN']:
+    if data['s_sound']['CAR HORN']:
         s_sound.append(3)
-    if data['sound']['SIREN']:
+    if data['s_sound']['SIREN']:
         s_sound.append(4)
-    if data['sound']['RINGTONE']:
+    if data['s_sound']['RINGTONE']:
         s_sound.append(5)
-    if data['sound']['SCREAMING']:
+    if data['s_sound']['SCREAMING']:
         s_sound.append(6)
-    if data['sound']['FIRE ALARM']:
+    if data['s_sound']['FIRE ALARM']:
         s_sound.append(7)
     
     predict_result = cnn_mfcc.main(record_path, s_sound)

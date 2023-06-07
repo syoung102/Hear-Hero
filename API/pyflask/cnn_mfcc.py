@@ -6,7 +6,7 @@ import os
 from pydub import AudioSegment
 
 max_pad_len = 1287
-model = load_model('pyflask\static\h5\final_CNN.h5')
+model = load_model('API\pyflask\static\h5\_best_CNN.h5')
 
 labels = [1, 2, 3, 4, 5, 6, 7]
 

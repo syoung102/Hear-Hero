@@ -2,7 +2,6 @@ import tensorflow as tf
 import numpy as np
 from pydub import AudioSegment
 import librosa
-import scipy.signal as signal
 import os
 import wave
 
@@ -50,19 +49,22 @@ def main(file_pathT):
     right_channel = audio_file.split_to_mono()[1]
 
     # Save the mono audio files
-    left_channel.export(os.path.join("pyflask/static/recoding", str(os.path.basename(file_path)) + "left.wav"), format="wav")
-    right_channel.export(os.path.join("pyflask/static/recoding", str(os.path.basename(file_path)) + "right.wav"), format="wav")
+    filename = os.path.splitext(os.path.basename(file_path))[0]
+    left_channel.export(os.path.join("pyflask/static/recoding", filename + "_left.wav"), format="wav")
+    right_channel.export(os.path.join("pyflask/static/recoding", str(filename) + "_right.wav"), format="wav")
 
-    signal1, sr1 = librosa.load(os.path.join("pyflask/static/recoding", str(os.path.basename(file_path)) + "left.wav"), sr=None)
+    signal1, sr1 = librosa.load(os.path.join("pyflask/static/recoding", filename + "_left.wav"), sr=None)
 
-    signal2, sr2 = librosa.load(os.path.join("pyflask/static/recoding", str(os.path.basename(file_path)) + "right.wav"), sr=None)
+    signal2, sr2 = librosa.load(os.path.join("pyflask/static/recoding", filename + "_right.wav"), sr=None)
 
-    corr = signal.correlate(signal1, signal2, mode='full')
+    # 교차상관 분석
+    corr = np.correlate(signal1, signal2, mode='full')
 
+    # 최대값 인덱스 계산
     max_index = np.argmax(corr)
     time_delay = (max_index - len(signal2) + 1) / sr1
 
-    distance = 0.15  # 마이크 사이 거리 (갤럭시 S21 기준)
+    distance = 0.14  # 마이크 사이 거리 (갤럭시 S21 기준)
     speed_of_sound = 343  # 소리 속도 m/s
     angle = np.arcsin(np.clip(time_delay * speed_of_sound / distance, -1, 1)) * 180 / np.pi
 
