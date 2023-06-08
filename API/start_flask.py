@@ -1,3 +1,4 @@
 from pyflask import app
  
-app.run(host='127.0.0.1')
+# app.run(host='localhost')
+app.run(host='0.0.0.0')

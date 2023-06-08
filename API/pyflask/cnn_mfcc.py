@@ -6,8 +6,8 @@ import os
 from pydub import AudioSegment
 
 max_pad_len = 1287
-model = load_model('API\pyflask\static\h5\_best_CNN.h5')
-
+model = load_model('pyflask/static/h5/CNN_final.h5')
+print("모델 로드 완료")
 labels = [1, 2, 3, 4, 5, 6, 7]
 
 le = LabelEncoder()
@@ -36,6 +36,7 @@ def convert_to_wav(file_path):
     except Exception as e:
         print(f"{file_path} 파일 변환 실패: {str(e)}")
 
+        
 def extract_mfcc(file_name):
     try:
         audio, sr = librosa.load(file_name) 
@@ -65,7 +66,9 @@ def print_prediction(file_name):
 
     if find == 1:
       print("The predicted class is:", predicted_class[0], '\n')
-      return predicted_class[0] 
+      result = predicted_class[0]
+      print(result)
+      return result 
     else:
       print("Nothing\n")
       return -1
@@ -78,5 +81,5 @@ def main(file_name, selected_sound):
         return -1
     for i in selected_sound:
        if result == i:
-          return result
+          return int(result)
     return -1
