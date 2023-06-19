@@ -77,5 +77,5 @@ def main(file_path):
     # 원본 파일 삭제
     os.remove(left_filepath)
     os.remove(right_filepath)
-    # os.remove(file_path)
+    os.remove(file_path)
     return angle
